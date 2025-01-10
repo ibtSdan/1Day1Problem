@@ -1,0 +1,6 @@
+a, b = map(list,input().split())
+a.reverse()
+b.reverse()
+a = ''.join(i for i in a)
+b = ''.join(i for i in b)
+print(int(a) if int(a)>int(b) else int(b))
