@@ -1,13 +1,12 @@
-A = list(map(str,input().split('-')))
+s = list(input().split('-'))
+ans = 0
+def ssum(a):
+  lst = list(map(int, a.split('+')))
+  return sum(lst)
 
-def mySum(i):
-    sum = 0
-    lst = list(map(int,i.split('+')))
-    for n in lst:
-        sum += n
-    return sum
-    
-ans = mySum(A[0])    
-for i in range(1, len(A)):
-    ans -= mySum(A[i])
+for i in range(len(s)):
+  if i==0:
+    ans += ssum(s[i])
+  else:
+    ans -= ssum(s[i])
 print(ans)
