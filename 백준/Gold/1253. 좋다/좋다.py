@@ -1,22 +1,21 @@
-import sys
 n = int(input())
-A = list(map(int, sys.stdin.readline().split()))
-A.sort()
+lst = list(map(int, input().split()))
+lst.sort()
 cnt = 0
-
-for k in range(n):
+for i in range(n):
+    k = lst[i]
     s = 0
     e = n-1
-    while s<e:
-        if A[s]+A[e] == A[k]:
-            if s != k and e != k:
-                cnt += 1
-                break
-            if s == k:
+    while s < e:
+        if lst[s]+lst[e] == k:
+            if s == i:
                 s += 1
-            else:
+            elif e == i:
                 e -= 1
-        elif A[s]+A[e] > A[k]:
+            else:
+                cnt +=1
+                break
+        elif lst[s]+lst[e] > k:
             e -= 1
         else:
             s += 1
