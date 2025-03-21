@@ -1,11 +1,11 @@
 n = int(input())
-count = 1
 s = 1
 e = 1
 ssum = 1
+cnt = 1
 while e < n:
     if ssum == n:
-        count += 1
+        cnt += 1
         e += 1
         ssum += e
     elif ssum > n:
@@ -14,4 +14,4 @@ while e < n:
     else:
         e += 1
         ssum += e
-print(count)
+print(cnt)
