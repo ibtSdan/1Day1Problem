@@ -1,14 +1,11 @@
 import sys
-n, m = map(int, sys.stdin.readline().split())
-lst = list(map(int, sys.stdin.readline().split()))
-s = [0]
-temp = 0
-for i in lst:
-    temp += i
-    s.append(temp)
+input = sys.stdin.readline
 
-for _ in range(m):
-    i, j = map(int, sys.stdin.readline().split())
-    print(s[j]-s[i-1])
-
-# S[j]-S[i-1] 은 i부터 j까지의 합
+n, m = map(int, input().split())
+A = list(map(int, input().split()))
+S = [0] * (n+1)
+for i in range (1, n+1):
+    S[i] = S[i-1] + A[i-1]
+for i in range(m):
+    a, b = map(int, input().split())
+    print(S[b]-S[a-1])
