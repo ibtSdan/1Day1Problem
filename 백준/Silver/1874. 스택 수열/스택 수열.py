@@ -1,28 +1,24 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
-answer = []
-flag = True
-A = [0] * n
+lst = []
 for i in range(n):
-    A[i] = int(input())
+    lst.append(int(input()))
+
+a = []
+ans = []
 num = 1
-stack = []
-
 for i in range(n):
-    if A[i] >= num:
-        while num <= A[i]:
-            stack.append(num)
-            num += 1
-            answer.append("+")
-        stack.pop()
-        answer.append("-")
+    while num <= lst[i]:
+        a.append(num)
+        num += 1
+        ans.append('+')
+    if a[-1] == lst[i]:
+        a.pop()
+        ans.append('-')
     else:
-        p = stack.pop()
-        if p > A[i]:
-            print("NO")
-            flag = False
-            break
-        answer.append("-")
-
-if flag:
-    for i in answer:
-        print(i)
+        print("NO")
+        sys.exit()
+for i in ans:
+    print(i)
