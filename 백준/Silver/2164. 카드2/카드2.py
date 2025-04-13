@@ -1,11 +1,10 @@
 from collections import deque
 n = int(input())
-dq = deque()
+lst = deque()
 for i in range(1,n+1):
-    dq.append(i)
+    lst.append(i)
 
-while len(dq) != 1:
-    dq.popleft()
-    a = dq.popleft()
-    dq.append(a)
-print(dq[0])
+while len(lst) > 1:
+    lst.popleft()
+    lst.append(lst.popleft())
+print(lst[0])
