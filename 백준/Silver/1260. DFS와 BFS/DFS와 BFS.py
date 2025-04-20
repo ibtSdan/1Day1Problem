@@ -1,7 +1,16 @@
 import sys
-from collections import deque
-sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
+from collections import deque
+
+n,m,s = map(int, input().split())
+A = [[] for _ in range(n+1)]
+for i in range(m):
+    u, v = map(int,input().split())
+    A[u].append(v)
+    A[v].append(u)
+for i in range(n+1):
+    A[i].sort()
 
 def DFS(v):
     visited[v] = True
@@ -9,7 +18,7 @@ def DFS(v):
     for i in A[v]:
         if not visited[i]:
             DFS(i)
-        
+            
 def BFS(v):
     dq = deque()
     dq.append(v)
@@ -19,21 +28,11 @@ def BFS(v):
         print(now, end=' ')
         for i in A[now]:
             if not visited[i]:
-                dq.append(i)
                 visited[i] = True
-    
-n, m, s = map(int,input().split())
-A = [[] for _ in range(n+1)]
-for _ in range(m):
-    u,v = map(int,input().split())
-    A[u].append(v)
-    A[v].append(u)
+                dq.append(i)
 
-for i in range(1,n+1):
-    A[i].sort()
-    
-visited = [False] * (n+1)
+visited = [False]*(n+1)
 DFS(s)
 print()
-visited = [False] * (n+1)
+visited = [False]*(n+1)
 BFS(s)
