@@ -1,15 +1,18 @@
-n, k = map(int,input().split())
-A = [0]*n
-for i in range(n):
-    A[i] = int(input())
+import sys
+input = sys.stdin.readline
 
-cnt = 0
-
-for i in range(n-1,-1,-1):
-    if A[i] <= k:
-        cnt = cnt + k//A[i]
-        k = k%A[i]
-    if k==0:
-        flag = True
+n, k = map(int, input().split())
+A = []
+for _ in range(n):
+    num = int(input())
+    if num>k:
         break
-print(cnt)        
+    A.append(num)
+A.sort(reverse=True)
+cnt = 0
+i = 0
+while k != 0:
+    cnt += k // A[i]
+    k %= A[i]
+    i += 1
+print(cnt)
