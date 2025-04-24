@@ -1,16 +1,23 @@
-import math, sys
-n = int(input())
-A = [0] * 10000001
-for i in range(2,10000001):
-    A[i] = i
-for i in range(2,int(math.sqrt(10000000))+1):
-    if A[i]==0:
-        continue
-    for j in range(i+i,10000001,i):
-        A[j] = 0
-lst = [i for i in range(10000001) if A[i] and i>=n]
+import sys
 
-for i in lst:
-    if str(i)==str(i)[::-1]:
-        print(int(i))
-        break
+n = int(input())
+
+def isPrime(x):
+    if n == 1:
+        return False
+    for i in range(2,int(n**0.5)+1):
+        if x%i==0:
+            return False
+    return True
+    
+def isPalin(x):
+    if str(x) == str(x)[::-1]:
+        return True
+    else:
+        return False
+        
+while True:
+    if isPrime(n) and isPalin(n):
+        print(n)
+        sys.exit()
+    n += 1
