@@ -2,13 +2,18 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-lst = list(map(int,input().split()))
-m = int(input())
-find = list(map(int,input().split()))
-A = [0] * (20000001)
-
+lst = list(map(int, input().split()))
+dic = {}
 for i in lst:
-    A[i+10000000] += 1
-    
-for i in find:
-    print(A[i+10000000])
+    if i in dic:
+        dic[i] += 1
+    else:
+        dic[i] = 1
+        
+m = int(input())
+find_list = list(map(int,input().split()))
+for find in find_list:
+    if find in dic:
+        print(dic[find], end=' ')
+    else:
+        print(0, end = ' ')
