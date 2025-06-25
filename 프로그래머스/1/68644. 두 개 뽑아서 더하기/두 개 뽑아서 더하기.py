@@ -1,11 +1,8 @@
 def solution(numbers):
     result = []
-    e = len(numbers)-1
-    while e != 0:
-        s = 0
-        for _ in range(e):
+    s = 0
+    while s < len(numbers)-1:
+        for e in range(s+1,len(numbers)):
             result.append(numbers[s]+numbers[e])
-            s += 1
-        e -= 1
-    result = sorted(set(result))
-    return result
+        s += 1
+    return sorted(list(set(result)))
