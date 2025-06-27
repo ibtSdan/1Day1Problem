@@ -1,9 +1,16 @@
 def solution(s):
-    lst = []
+    stack = []
+    is_valid = True
     for i in s:
-        while len(lst)>1 and lst[-1]==')' and lst[-2]=='(':
-            lst.pop()
-            lst.pop()
-        lst.append(i)
-    print(lst)
-    return True if lst==['(', ')'] else False
+        if i==')':
+            if not stack or stack[-1] != '(':
+                is_valid = False
+                break
+            else:
+                stack.pop()
+        else:
+            stack.append(i)
+    if stack:
+        is_valid = False
+        
+    return is_valid
