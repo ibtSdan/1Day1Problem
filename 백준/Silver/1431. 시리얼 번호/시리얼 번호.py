@@ -2,14 +2,12 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-lst = [[] for _ in range(51)]
-for _ in range(n):
-    number = input().strip()
-    ssum = sum(int(i) for i in number if i.isdigit())
-    lst[len(number)].append((number,ssum))
+lst = [input().strip() for _ in range(n)]
 
-for i in range(51):
-    if lst[i]:
-        lst[i].sort(key=lambda x: (x[1],x[0]))
-        for j in lst[i]:
-            print(j[0])
+def sort_key(s):
+    ssum = sum(int(i) for i in s if i.isdigit())
+    return (len(s), ssum, s)
+
+lst.sort(key=sort_key)
+for se in lst:
+    print(se)
