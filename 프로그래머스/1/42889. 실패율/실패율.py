@@ -1,22 +1,26 @@
-import heapq
 def solution(n, stages):
-    A = [0] * (n+1)
-    for i in stages:
-        if i > n:
-            i = n
-        for j in range(1,i+1):
-            A[j] += 1
-    print(A)
-    fail = []
+    fail = [0] * (n+1)
+    arrive = [0] * (n+1)
+    fail_rate = []
+    for p in stages:
+        if p>n:
+            p = n
+            fail[p] -= 1
+        fail[p] += 1
+        for i in range(1,p+1):
+            arrive[i] += 1
+    
     for i in range(1,n+1):
-        if A[i] == 0:
-            heapq.heappush(fail, [0, i])
+        fail_p = fail[i]
+        arrive_p = arrive[i]
+        if arrive_p == 0:
+            fail_rate.append((0,i))
             continue
-            
-        heapq.heappush(fail, [-stages.count(i)/A[i], i])
-        
-    result = []
-    for i in range(n):
-        _, now = heapq.heappop(fail)
-        result.append(now)
-    return result
+        fail_rate.append((fail_p/arrive_p, i))
+    
+    fail_rate.sort(key=lambda x: (-x[0], x[1]))
+    
+    ans = []
+    for f, stage in fail_rate:
+        ans.append(stage)
+    return ans
