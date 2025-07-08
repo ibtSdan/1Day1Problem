@@ -1,16 +1,17 @@
-import heapq, sys
+import sys
 input = sys.stdin.readline
+
 n = int(input())
 A = []
-answer = 1
 for _ in range(n):
-    s, e = map(int,input().split())
-    heapq.heappush(A, (e,s))
-    
-f_e, f_s = heapq.heappop(A)
-while A:
-    s_e, s_s = heapq.heappop(A)
-    if f_e <= s_s:
-        answer += 1
-        f_s, f_e = s_s, s_e
-print(answer)
+    s, e = map(int, input().split())
+    A.append((s,e))
+A.sort(key=lambda x: (x[1],x[0]))
+
+cnt = 0
+end = 0
+for s, e in A:
+    if s >= end:
+        cnt += 1
+        end = e
+print(cnt)
