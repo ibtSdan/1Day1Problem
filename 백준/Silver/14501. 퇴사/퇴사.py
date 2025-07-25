@@ -1,18 +1,15 @@
-import sys
-input = sys.stdin.readline
-
 n = int(input())
-d = [0]*(n+2)
-t = []
-p = []
+days = [0]
+pays = [0]
 for _ in range(n):
-    tt, pp = map(int, input().split())
-    t.append(tt)
-    p.append(pp)
+    day, pay = map(int, input().split())
+    days.append(day)
+    pays.append(pay)
+D = [0]*(n+2)
 
-for i in range(n-1, -1, -1):
-    if i+t[i] > n:
-        d[i] = d[i+1]
+for i in range(n,0,-1):
+    if i+days[i]<=n+1:
+        D[i] = max(D[i+1], pays[i] + D[i+days[i]])
     else:
-        d[i] = max(d[i+1], d[i+t[i]]+p[i])
-print(d[0])
+        D[i] = D[i+1]
+print(D[1])
