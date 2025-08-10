@@ -1,11 +1,9 @@
 n = int(input())
-dp0 = [0]*(n+1)
-dp1 = [0]*(n+1)
+d = [[0 for j in range(2)] for i in range(n+1)]
 
-dp1[1] = 1
-
+d[1][1] = 1
 for i in range(2,n+1):
-    dp0[i] = dp0[i-1] + dp1[i-1]
-    dp1[i] = dp0[i-1]
+    d[i][0] = d[i-1][0] + d[i-1][1]
+    d[i][1] = d[i-1][0]
     
-print(dp0[n]+dp1[n])
+print(d[n][0] + d[n][1])
