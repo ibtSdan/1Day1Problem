@@ -1,21 +1,17 @@
-import sys
-input = sys.stdin.readline
-
 n = int(input())
 for _ in range(n):
-    string = input().strip()
     check = True
+    inp = input().strip()
     stack = []
-    for s in string:
-        if stack and s == ')':
-            if stack[-1] == '(':
-                stack.pop()
-            else:
-                check = False
-                break
-        else:
+    for s in inp:
+        if not stack and s==')':
+            check = False
+            break
+        elif s=='(':
             stack.append(s)
-    if stack or not check:
-        print("NO")
-    else:
+        else:
+            stack.pop()
+    if check and not stack:
         print("YES")
+    else:
+        print("NO")
