@@ -1,21 +1,20 @@
 import sys
 input = sys.stdin.readline
 
-n, k = map(int,input().split())
-lst = list(map(int,input().split()))
+n, m = map(int, input().split())
+woods = list(map(int, input().split()))
+ans = 0
 s = 0
-e = max(lst)
-result = 0
-
-while s <= e:
-    h = (s+e)//2
+e = max(woods)
+while s<=e:
+    mid = (s+e)//2
     total = 0
-    for i in lst:
-        if i>h:
-            total += i-h
-    if total>=k:
-        result = h
-        s = h+1
+    for i in woods:
+        if i>mid:
+            total += i-mid
+    if total<m:
+        e = mid-1
     else:
-        e = h-1
-print(result)
+        ans = max(ans, mid)
+        s = mid+1
+print(ans)
