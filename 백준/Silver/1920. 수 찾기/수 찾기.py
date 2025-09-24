@@ -1,27 +1,23 @@
-import sys
-input = sys.stdin.readline
-
 n = int(input())
-A = list(map(int, input().split()))
-A.sort()
-m = int(input())
-find = list(map(int,input().split()))
+lst = list(map(int, input().split()))
+lst.sort()
 
-for i in range(m):
-    flag = False
-    target = find[i]
+m = int(input())
+find = list(map(int, input().split()))
+
+for k in find:
     s = 0
-    e = len(A) - 1
-    while s <= e:
+    e = n-1
+    check = False
+    while s<=e:
         mid = (s+e)//2
-        if A[mid] > target:
-            e = mid - 1
-        elif A[mid] < target:
-            s = mid + 1
-        else:
-            flag = True
+        if lst[mid]==k:
+            print(1)
+            check = True
             break
-    if flag:
-        print(1)
-    else:
+        elif lst[mid]>k:
+            e = mid-1
+        else:
+            s = mid+1
+    if not check:
         print(0)
