@@ -1,12 +1,14 @@
 from collections import deque
-n, k = map(int,input().split())
-dq = deque([i for i in range(1,n+1)])
+
+n, k = map(int, input().split())
+lst = [i for i in range(1,n+1)]
+dq = deque(lst)
 ans = []
 
-while dq:
+while len(dq)>=2:
     for _ in range(k-1):
         dq.append(dq.popleft())
-    ans.append(dq.popleft())
+    ans.append(str(dq.popleft()))
+ans.append(str(dq[0]))
 
-answer = ', '.join(str(i) for i in ans)
-print("<"+answer+">")
+print('<'+', '.join(ans)+'>')
