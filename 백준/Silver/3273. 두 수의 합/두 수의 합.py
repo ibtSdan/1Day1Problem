@@ -1,21 +1,18 @@
-import sys
-input = sys.stdin.readline
 n = int(input())
-lst = list(map(int, input().split()))
+lst = list(map(int,input().split()))
 lst.sort()
-x = int(input())
+k = int(input())
 
+ans = 0
 s = 0
-e = len(lst)-1
-cnt = 0
-
+e = n-1
 while s<e:
-    if lst[s]+lst[e]==x:
-        cnt += 1
+    if lst[s]+lst[e]==k:
+        ans += 1
         s += 1
         e -= 1
-    elif lst[s]+lst[e]>x:
-        e -= 1
+    elif lst[s]+lst[e]<k:
+        s += 1
     else:
-        s += 1
-print(cnt)
+        e -= 1
+print(ans)
