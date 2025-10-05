@@ -1,15 +1,14 @@
 n = int(input())
-days = [0]
-pays = [0]
+lst = []
+lst.append((0,0))
 for _ in range(n):
-    day, pay = map(int, input().split())
-    days.append(day)
-    pays.append(pay)
-D = [0]*(n+2)
+    time, pay = map(int, input().split())
+    lst.append((time, pay))
 
-for i in range(n,0,-1):
-    if i+days[i]<=n+1:
-        D[i] = max(D[i+1], pays[i] + D[i+days[i]])
+dp = [0]*(n+2)
+for day in range(n,0,-1):
+    if day+lst[day][0]<=n+1:
+        dp[day] = max(dp[day+1], lst[day][1] + dp[day+lst[day][0]])
     else:
-        D[i] = D[i+1]
-print(D[1])
+        dp[day] = dp[day+1] 
+print(max(dp))
